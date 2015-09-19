@@ -1,7 +1,7 @@
 package org.costa;
 
 public enum PlaceholderReplacementStrategies {
-	DEFAULT(new DefaultStrategy()), COSTA_ALGO(new CostasAlgo());
+	DEFAULT(new DefaultStrategy()), LINEAR(new LinearStrategy());
 
 	private PlaceholderReplacementStrategy strategy;
 

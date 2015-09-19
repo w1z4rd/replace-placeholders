@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class DefaultStrategy implements PlaceholderReplacementStrategy {
 
-	@Override
 	public String replace(final StringBuilder text, final PlaceholderMap parameters) {
 		StringBuilder clone = new StringBuilder(text);
 		for (Map.Entry<String, String> entry : parameters.getEntrySet()) {

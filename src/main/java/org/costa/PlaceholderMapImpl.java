@@ -41,7 +41,6 @@ public class PlaceholderMapImpl implements PlaceholderMap {
 		return "map:" + parameters + "\nlongest: " + longestPlaceholder + "\nshortest: " + shortestPlaceholder;
 	}
 
-	@Override
 	public Set<Entry<String, String>> getEntrySet() {
 		return parameters.entrySet();
 	}

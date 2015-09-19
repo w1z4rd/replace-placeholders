@@ -1,8 +1,7 @@
 package org.costa;
 
-public class CostasAlgo implements PlaceholderReplacementStrategy {
+public class LinearStrategy implements PlaceholderReplacementStrategy {
 
-	@Override
 	public String replace(final StringBuilder text, final PlaceholderMap map) {
 		StringBuilder clone = new StringBuilder(text);
 		for (int h = 0, i = h + 1; h < clone.length() - map.getShortestPlaceholder() - 1;) {
