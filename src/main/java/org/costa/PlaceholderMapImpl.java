@@ -7,42 +7,44 @@ import java.util.Set;
 
 public class PlaceholderMapImpl implements PlaceholderMap {
 
-	int longestPlaceholder = 0;
-	int shortestPlaceholder = Integer.MAX_VALUE;
+  private int longestPlaceholder = 0;
+  private int shortestPlaceholder = Integer.MAX_VALUE;
 
-	Map<String, String> parameters = new HashMap<String, String>();
+  private Map<String, String> parameters = new HashMap<String, String>();
 
-	public String getValue(String placeholder) {
-		return parameters.get(placeholder);
-	}
+  public final String getValue(final String placeholder) {
+    return parameters.get(placeholder);
+  }
 
-	public void addPlaceholderValue(String placeholder, String value) {
-		if (placeholder == null) {
-			return;
-		}
-		if (placeholder.length() < shortestPlaceholder) {
-			shortestPlaceholder = placeholder.length();
-		}
-		if (placeholder.length() > longestPlaceholder) {
-			longestPlaceholder = placeholder.length();
-		}
-		parameters.put(placeholder, value);
-	}
+  public final void addPlaceholderValue(final String placeholder,
+      final String value) {
+    if (placeholder == null) {
+      return;
+    }
+    if (placeholder.length() < shortestPlaceholder) {
+      shortestPlaceholder = placeholder.length();
+    }
+    if (placeholder.length() > longestPlaceholder) {
+      longestPlaceholder = placeholder.length();
+    }
+    parameters.put(placeholder, value);
+  }
 
-	public int getLongesPlaceholder() {
-		return longestPlaceholder;
-	}
+  public final int getLongesPlaceholder() {
+    return longestPlaceholder;
+  }
 
-	public int getShortestPlaceholder() {
-		return shortestPlaceholder;
-	}
+  public final int getShortestPlaceholder() {
+    return shortestPlaceholder;
+  }
 
-	public String toString() {
-		return "map:" + parameters + "\nlongest: " + longestPlaceholder + "\nshortest: " + shortestPlaceholder;
-	}
+  public final String toString() {
+    return "map:" + parameters + "\nlongest: " + longestPlaceholder
+        + "\nshortest: " + shortestPlaceholder;
+  }
 
-	public Set<Entry<String, String>> getEntrySet() {
-		return parameters.entrySet();
-	}
+  public final Set<Entry<String, String>> getEntrySet() {
+    return parameters.entrySet();
+  }
 
 }

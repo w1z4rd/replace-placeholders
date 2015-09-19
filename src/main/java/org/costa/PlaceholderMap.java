@@ -5,13 +5,13 @@ import java.util.Set;
 
 public interface PlaceholderMap {
 
-	void addPlaceholderValue(String placeholder, String value);
+  void addPlaceholderValue(String placeholder, String value);
 
-	String getValue(String placeholder);
+  String getValue(String placeholder);
 
-	int getLongesPlaceholder();
+  int getLongesPlaceholder();
 
-	int getShortestPlaceholder();
+  int getShortestPlaceholder();
 
-	Set<Entry<String, String>> getEntrySet();
+  Set<Entry<String, String>> getEntrySet();
 }
