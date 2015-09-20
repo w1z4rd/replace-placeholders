@@ -2,11 +2,17 @@ package org.costa;
 
 public class LinearStrategy implements PlaceholderReplacementStrategy {
 
-  public final String replace(final StringBuilder text,
-      final PlaceholderMap map) {
+  public final String replace(final String text, final PlaceholderMap map) {
+    if (text == null || text.isEmpty()) {
+      return text;
+    }
+    if (map == null || map.isEmpty()) {
+      return text;
+    }
     StringBuilder clone = new StringBuilder(text);
-    for (int h = 0, i = h + 1; h < clone.length() - map.getShortestPlaceholder()
-        - 1;) {
+    int h = 0;
+    int i = h + 1;
+    while (h <= clone.length() - map.getShortestPlaceholder()) {
       if (clone.charAt(h) == '$' && clone.charAt(i) == '$') {
         boolean found = false;
         for (int j = h + map.getShortestPlaceholder() - 2, k = j + 1; k < clone

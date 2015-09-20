@@ -43,8 +43,11 @@ public class PlaceholderMapImpl implements PlaceholderMap {
         + "\nshortest: " + shortestPlaceholder;
   }
 
-  public final Set<Entry<String, String>> getEntrySet() {
+  public final Set<Entry<String, String>> getEntries() {
     return parameters.entrySet();
   }
 
+  public final boolean isEmpty() {
+    return parameters.isEmpty();
+  }
 }

@@ -4,10 +4,10 @@ import java.util.Map;
 
 public class DefaultStrategy implements PlaceholderReplacementStrategy {
 
-  public final String replace(final StringBuilder text,
+  public final String replace(final String text,
       final PlaceholderMap parameters) {
     StringBuilder clone = new StringBuilder(text);
-    for (Map.Entry<String, String> entry : parameters.getEntrySet()) {
+    for (Map.Entry<String, String> entry : parameters.getEntries()) {
       String placeholder = entry.getKey();
       String value = entry.getValue();
       int i;

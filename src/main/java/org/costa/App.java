@@ -10,12 +10,12 @@ public class App {
     this.strategy = replaceStrategy;
   }
 
-  public final String replace(final StringBuilder text) {
+  public final String replace(final String text) {
     return strategy.replace(text, placeholderMap);
   }
 
   public static void main(final String [] args) {
-    final StringBuilder text = new StringBuilder(
+    final String text =
         "$$a$$ agf$$a$$ag $$ab$$ asd$$a$sa $$xyeza$$ $$abcdefgh$$ asdsda "
         + "ads$$a$$sadas as$$abcdefgh$$das da$$a$$ agf$$a$$ag $$ab$$ asd$$a$sa "
         + "$$xyeza$$ $$abcdefgh$$ "
@@ -76,7 +76,7 @@ public class App {
         + "agf$$a$$ag $$ab$$ asd$$a$sa $$xyeza$$ $$abcdefgh$$ asdsda "
         + "ads$$a$$sadas as$$abcdefgh$$das da$$a$$ agf$$a$$ag $$ab$$ asd$$a$sa "
         + "$$xyeza$$ $$abcdefgh$$ asdsda ads$$a$$sadas as$$abcdefgh$$das da"
-        + "as$$abcdefgh$$das da$$a$$ agf$$a$$ag $$ab$$ asd$$a$sa $$xyeza$$ ");
+        + "as$$abcdefgh$$das da$$a$$ agf$$a$$ag $$ab$$ asd$$a$sa $$xyeza$$ ";
     App p = new App();
     p.placeholderMap = new PlaceholderMapImpl();
     p.placeholderMap.addPlaceholderValue("$$a$$", "first_value");
@@ -98,3 +98,4 @@ public class App {
     assert (result1.equals(result));
   }
 }
+

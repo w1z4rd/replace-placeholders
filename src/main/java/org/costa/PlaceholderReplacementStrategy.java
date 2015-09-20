@@ -2,5 +2,5 @@ package org.costa;
 
 public interface PlaceholderReplacementStrategy {
 
-  String replace(final StringBuilder text, final PlaceholderMap placeholderMap);
+  String replace(final String text, final PlaceholderMap placeholderMap);
 }
