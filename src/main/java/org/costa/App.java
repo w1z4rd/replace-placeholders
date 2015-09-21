@@ -57,7 +57,10 @@ public class App {
         + "t$$e$$x$$t$$pattern$$ sh$$or$$aaaaa$$t $$a$$ t$$e$$x$$t$$pattern$$"
         + "$$$$$aaaaa$$sh$$or$$aaaaa$$t $$a$$ t$$e$$x$$t$$pattern$$"
         + "$$$$aaaaa$$sh$$or$$$$aaaaa$$$$t $$a$$ t$$e$$x$$t$$$$pattern$$$$"
-        + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$aa$$sh$$oaa$$sh$$oaa$$sh$$oaa$$sh$$o";
+        + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$aa$$sh$$oaa$$sh$$oaa$$sh$$oaa$$sh$$o"
+        + "$$$$$aaaaa$$sh$$or$$$aaaaa$$t $$a$$ t$$e$$x$$t$$$pattern$$"
+        + "$$$$$aaaaa$$sh$$or$$$aaaaa$$t $$a$$ t$$e$$x$$t$$$pattern$$"
+        + "$$$$$aaaaa$$sh$$or$$$aaaaa$$t $$a$$ t$$e$$x$$t$$$pattern$$";
     App p = new App();
     p.placeholderMap = new PlaceholderMapImpl();
     p.placeholderMap.addPlaceholderValue("$$a$$", "first_value");

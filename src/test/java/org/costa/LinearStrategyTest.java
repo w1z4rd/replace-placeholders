@@ -193,14 +193,14 @@ public class LinearStrategyTest {
 
   @Test
   public void TestWithOddConsecutiveStartingPatterns() {
-    String text = "$$$$$aaaaa$$sh$$or$$aaaaa$$t $$a$$ t$$e$$x$$t$$pattern$$";
+    String text = "$$$$$aaaaa$$sh$$or$$$aaaaa$$t $$a$$ t$$e$$x$$t$$$pattern$$";
     PlaceholderMap map = new PlaceholderMapImpl();
     map.addPlaceholderValue("$$a$$", "value");
     map.addPlaceholderValue("$$aaaaa$$", "midValue");
     map.addPlaceholderValue("$$pattern$$", "longVal");
     LinearStrategy l = new LinearStrategy();
 
-    String expected = "$$$midValuesh$$ormidValuet value t$$e$$x$$tlongVal";
+    String expected = "$$$midValuesh$$or$midValuet value t$$e$$x$$t$longVal";
     String actual = l.replace(text, map);
 
     assertEquals(expected, actual);

@@ -18,7 +18,7 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
     while (h <= clone.length() - map.getShortestPlaceholder()) {
       if (clone.charAt(h) == '$' && clone.charAt(i) == '$') {
         while (clone.charAt(i + 1) == '$'
-            && i < clone.length() - map.getLongesPlaceholder()) {
+            && i < clone.length() - map.getShortestPlaceholder()) {
           h++;
           i++;
         }
