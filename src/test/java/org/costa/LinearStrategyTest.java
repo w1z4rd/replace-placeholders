@@ -185,7 +185,21 @@ public class LinearStrategyTest {
     map.addPlaceholderValue("$$pattern$$", "longVal");
     LinearStrategy l = new LinearStrategy();
 
-    String expected = "sh$$orvaluet value t$$e$$x$$tlongVal";
+    String expected = "sh$$orvaluet $$a$$ t$$e$$x$$tlongVal";
+    String actual = l.replace(text, map);
+
+    assertEquals(expected, actual);
+  }
+
+    @Test
+  public void TestConsecutiveStartingPatterns() {
+    String text = "$$$$$aaaaa$$sh$$or$$aaaaa$$t $$a$$ t$$e$$x$$t$$pattern$$";
+    PlaceholderMap map = new PlaceholderMapImpl();
+    map.addPlaceholderValue("$$aaaaa$$", "value");
+    map.addPlaceholderValue("$$pattern$$", "longVal");
+    LinearStrategy l = new LinearStrategy();
+
+    String expected = "$$valuesh$$orvaluet value t$$e$$x$$tlongVal";
     String actual = l.replace(text, map);
 
     assertEquals(expected, actual);
