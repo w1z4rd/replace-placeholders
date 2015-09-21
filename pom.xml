@@ -30,7 +30,7 @@
         </configuration>
         <executions>
           <execution>
-            <phase>compile</phase>
+            <phase>test</phase>
             <goals>
               <goal>check</goal>
             </goals>
@@ -46,7 +46,7 @@
         </configuration>
         <executions>
           <execution>
-            <phase>compile</phase>
+            <phase>test</phase>
             <goals>
               <goal>check</goal>
             </goals>
@@ -86,6 +86,7 @@
         <groupId>com.puppycrawl.tools</groupId>
         <artifactId>checkstyle</artifactId>
         <version>6.2</version>
+        <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
