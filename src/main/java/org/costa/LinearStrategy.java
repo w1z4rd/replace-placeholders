@@ -9,14 +9,21 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
     if (map == null || map.isEmpty()) {
       return text;
     }
+    int h = text.indexOf('$');
+    if (h == -1) {
+      return text;
+    }
     StringBuilder clone = new StringBuilder(text);
-    int h = 0;
     int i = h + 1;
     while (h <= clone.length() - map.getShortestPlaceholder()) {
       if (clone.charAt(h) == '$' && clone.charAt(i) == '$') {
+        while (clone.charAt(i + 1) == '$'
+            && i < clone.length() - map.getLongesPlaceholder()) {
+          h++;
+          i++;
+        }
         boolean found = false;
-        for (int j = h + map.getShortestPlaceholder() - 2, k = j + 1; k < clone
-            .length(); j++, k++) {
+        for (int j = h + 2, k = j + 1; k < clone.length(); j++, k++) {
           if (clone.charAt(j) == '$' && clone.charAt(k) == '$') {
             String placeholder = clone.substring(h, k + 1);
             String value = map.getValue(placeholder);

@@ -191,15 +191,46 @@ public class LinearStrategyTest {
     assertEquals(expected, actual);
   }
 
-    @Test
-  public void TestConsecutiveStartingPatterns() {
+  @Test
+  public void TestWithOddConsecutiveStartingPatterns() {
     String text = "$$$$$aaaaa$$sh$$or$$aaaaa$$t $$a$$ t$$e$$x$$t$$pattern$$";
     PlaceholderMap map = new PlaceholderMapImpl();
-    map.addPlaceholderValue("$$aaaaa$$", "value");
+    map.addPlaceholderValue("$$a$$", "value");
+    map.addPlaceholderValue("$$aaaaa$$", "midValue");
     map.addPlaceholderValue("$$pattern$$", "longVal");
     LinearStrategy l = new LinearStrategy();
 
-    String expected = "$$valuesh$$orvaluet value t$$e$$x$$tlongVal";
+    String expected = "$$$midValuesh$$ormidValuet value t$$e$$x$$tlongVal";
+    String actual = l.replace(text, map);
+
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void TestWithEvenConsecutiveStartingPatterns() {
+    String text = "$$$$aaaaa$$sh$$or$$$$aaaaa$$$$t $$a$$ t$$e$$x$$t$$$$pattern$$$$";
+    PlaceholderMap map = new PlaceholderMapImpl();
+    map.addPlaceholderValue("$$a$$", "value");
+    map.addPlaceholderValue("$$aaaaa$$", "midValue");
+    map.addPlaceholderValue("$$pattern$$", "longVal");
+    LinearStrategy l = new LinearStrategy();
+
+    String expected = "$$midValuesh$$or$$midValue$$t value t$$e$$x$$t$$longVal$$";
+    String actual = l.replace(text, map);
+
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void TestWithOnlyStartingPatterns() {
+    String text = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
+    PlaceholderMap map = new PlaceholderMapImpl();
+    map.addPlaceholderValue("$$a$$", "value");
+    map.addPlaceholderValue("$$aaaaa$$", "midValue");
+    map.addPlaceholderValue("$$pattern$$", "longVal");
+    LinearStrategy l = new LinearStrategy();
+
+    String expected = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     String actual = l.replace(text, map);
 
     assertEquals(expected, actual);
