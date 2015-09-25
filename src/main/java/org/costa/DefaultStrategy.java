@@ -5,18 +5,22 @@ import java.util.Map;
 public class DefaultStrategy implements PlaceholderReplacementStrategy {
 
   public final String replace(final String text,
-      final PlaceholderMap parameters) {
+      final PlaceholderMap map) {
+    if (text == null || text.isEmpty()) {
+      return text;
+    }
+    if (map == null || map.isEmpty()) {
+      return text;
+    }
     StringBuilder clone = new StringBuilder(text);
-    for (Map.Entry<String, String> entry : parameters.getEntries()) {
+    for (Map.Entry<String, String> entry : map.getEntries()) {
       String placeholder = entry.getKey();
       String value = entry.getValue();
-      int i;
-      while ((i = clone.indexOf(placeholder)) >= 0) {
-        String substr = clone.substring(i, i + placeholder.length());
-        if (substr.equals(placeholder)) {
+      int valueLength = 0;
+      int i = 0;
+      while ((i = clone.indexOf(placeholder, i + valueLength)) >= 0) {
           clone.replace(i, i + placeholder.length(), value);
-          i = value.length() + 1;
-        }
+          valueLength = value.length();
       }
     }
     return clone.toString();

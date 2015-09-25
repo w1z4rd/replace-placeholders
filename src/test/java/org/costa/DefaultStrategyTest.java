@@ -2,13 +2,13 @@ package org.costa;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 
-public class LinearStrategyTest {
+public class DefaultStrategyTest {
 
-  private PlaceholderReplacementStrategy strategy = new LinearStrategy();
+  private PlaceholderReplacementStrategy strategy = new DefaultStrategy();
   private PlaceholderMap map;
 
   @Before
@@ -22,9 +22,9 @@ public class LinearStrategyTest {
   }
 
   @Test
-  public void TestNull() {
+  public void TestNullPlaceholderMap() {
     String text = "";
-    map = null;
+    PlaceholderMap map = null;
 
     String expected = "";
     String actual = strategy.replace(text, map);
@@ -43,7 +43,7 @@ public class LinearStrategyTest {
   }
 
   @Test
-  public void TestEmpty() {
+  public void TestEmptyPlaceholderMap() {
     String text = "random text";
 
     String expected = "random text";
