@@ -1,6 +1,8 @@
 package org.costa;
 
 public class LinearStrategy implements PlaceholderReplacementStrategy {
+  private static final int TWO = 2;
+  private static final int FOUR = 4;
 
   public final String replace(final String text, final PlaceholderMap map) {
     if (text == null || text.isEmpty()) {
@@ -25,7 +27,7 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
         int x = i + 1;
         int y = x + 1;
         boolean found = false;
-        for (int j = h + map.getShortestPlaceholder() - 2, k = j + 1;
+        for (int j = getIndexOfClosestExpectedEndingPattern(map, h), k = j + 1;
                 k < clone.length(); j++, k++) {
           if (checkPattern(clone, j, k)) {
             String placeholder = clone.substring(h, k + 1);
@@ -44,7 +46,8 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
         }
         if (!found) {
           boolean closer = false;
-          for (int t = 0; t < map.getShortestPlaceholder() - 3; t++) {
+          for (int t = 0; t < getLengthOfShortestNonEndingPatternSequence(map);
+                  t++) {
              if (checkPattern(clone, x, y)) {
                  h = x;
                  i = y;
@@ -66,6 +69,16 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
       }
     }
     return clone.toString();
+  }
+
+  private int getLengthOfShortestNonEndingPatternSequence(
+          final PlaceholderMap map) {
+      return map.getShortestPlaceholder() - FOUR;
+  }
+
+  private int getIndexOfClosestExpectedEndingPattern(final PlaceholderMap map,
+          final int startingPatternIndex) {
+      return startingPatternIndex + map.getShortestPlaceholder() - TWO;
   }
 
   private boolean checkPattern(final StringBuilder sb, final int i,
