@@ -16,15 +16,18 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
     StringBuilder clone = new StringBuilder(text);
     int i = h + 1;
     while (h <= clone.length() - map.getShortestPlaceholder()) {
-      if (clone.charAt(h) == '$' && clone.charAt(i) == '$') {
+      if (checkPattern(clone, h, i)) {
         while (clone.charAt(i + 1) == '$'
             && i < clone.length() - map.getShortestPlaceholder()) {
           h++;
           i++;
         }
+        int x = i + 1;
+        int y = x + 1;
         boolean found = false;
-        for (int j = h + 2, k = j + 1; k < clone.length(); j++, k++) {
-          if (clone.charAt(j) == '$' && clone.charAt(k) == '$') {
+        for (int j = h + map.getShortestPlaceholder() - 2, k = j + 1;
+                k < clone.length(); j++, k++) {
+          if (checkPattern(clone, j, k)) {
             String placeholder = clone.substring(h, k + 1);
             String value = map.getValue(placeholder);
             if (value != null) {
@@ -40,8 +43,22 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
           }
         }
         if (!found) {
-          h++;
-          i++;
+          boolean closer = false;
+          for (int t = 0; t < map.getShortestPlaceholder() - 3; t++) {
+             if (checkPattern(clone, x, y)) {
+                 h = x;
+                 i = y;
+                 closer = true;
+                 break;
+             } else {
+                 x++;
+                 y++;
+             }
+          }
+          if (!closer) {
+            h++;
+            i++;
+          }
         }
       } else {
         h++;
@@ -49,5 +66,10 @@ public class LinearStrategy implements PlaceholderReplacementStrategy {
       }
     }
     return clone.toString();
+  }
+
+  private boolean checkPattern(final StringBuilder sb, final int i,
+          final int j) {
+      return sb.charAt(i) == '$' && sb.charAt(j) == '$';
   }
 }

@@ -169,11 +169,11 @@ public class LinearStrategyTest {
 
   @Test
   public void TestNextStartingPatternDistShorterThanShortestPlaceholderLenght() {
-    String text = "sh$$or$$aaaaa$$t $$a$$ t$$e$$x$$t$$pattern$$";
+    String text = "sh$$or$$aaaaa$$t $$aaa$$aaaaa$$ $$a$$aaaaa$$t$$e$$x$$t$$pattern$$";
     map.addPlaceholderValue("$$aaaaa$$", "value");
     map.addPlaceholderValue("$$pattern$$", "longVal");
 
-    String expected = "sh$$orvaluet $$a$$ t$$e$$x$$tlongVal";
+    String expected = "sh$$orvaluet $$aaavalue $$avaluet$$e$$x$$tlongVal";
     String actual = strategy.replace(text, map);
 
     assertEquals(expected, actual);
